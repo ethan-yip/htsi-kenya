@@ -1,0 +1,57 @@
+---
+import { assets } from "../data/assets";
+---
+
+<section class="mx-auto mt-4 w-full px-4 sm:px-6 lg:px-10">
+  <div
+    class="relative grid min-h-[680px] gap-10 rounded-[42px] bg-[#800000] p-8 lg:min-h-[820px] lg:p-20 max-w-[80vw]"
+    data-animate-group
+  >
+    <div class="flex flex-col justify-center gap-6 lg:pr-4 max-w-[43vw]" data-animate>
+      <p class="text-[16px] tracking-[0.2em] text-white/80">
+        HTSI AFRICAN DEVELOPMENT AND GROWTH FUND
+      </p>
+      <h1 class="font-serif text-[52px] font-bold leading-[1] tracking-tighter text-white sm:text-[60px] md:text-[6vw]">
+        <span>Your idea </span>
+        <span class="font-serif font-normal italic">deserves</span>
+        <span> to exist in the real world.</span>
+      </h1>
+      <p class="max-w-[560px] text-[20px] leading-[1.4] text-[#d3baba]">
+        We're looking for the next generation of Kenyan innovators - builders,
+        problem-solvers, and founders who are ready to turn ideas into real
+        impact.
+      </p>
+      <button
+        class="mt-4 inline-flex w-fit items-center gap-3 rounded-[42px] bg-white px-8 py-4 text-[18px] font-semibold text-[#a0152a]"
+      >
+        Apply to the KDP
+        <img src={assets.icons.arrowRight} alt="" class="h-5 w-5" />
+      </button>
+    </div>
+  </div>
+  <div
+      class="hero-image-wrap relative lg:absolute top-[20vh] 2xl:top-[30vh] lg:right-[-28px] lg:w-[45%]"
+      data-animate
+    >
+      <div class="hero-image relative aspect-[121/182] w-full overflow-hidden rounded-[36px] shadow-[0_28px_60px_rgba(0,0,0,0.25)]">
+        <img
+          src={assets.heroImage}
+          alt="Smiling founder in Nairobi"
+          class="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+</section>
+
+<style>
+  @media (min-width: 1536px) {
+    .hero-image {
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-image-wrap {
+      width: 50%;
+    }
+  }
+</style>

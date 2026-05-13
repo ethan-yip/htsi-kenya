@@ -1,0 +1,42 @@
+---
+import { assets } from "../data/assets";
+---
+
+<section class="relative mt-24 min-h-screen" data-animate-group>
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style={`background-image: url(${assets.howItWorksBg});`}
+  ></div>
+  <div class="absolute inset-0 bg-[#a0152a]/25"></div>
+  <div class="relative mx-auto min-h-screen w-full max-w-[1440px] px-6 text-white lg:px-12">
+    <span class="absolute right-12 top-10 text-[22px] md:text-[28px]" data-animate>
+      Next
+    </span>
+    <div class="absolute left-12 top-[20vh]" data-animate>
+      <div class="mb-8 flex gap-3">
+        <span class="h-[2px] w-10 bg-white/70"></span>
+        <span class="h-[2px] w-10 bg-white/40"></span>
+        <span class="h-[2px] w-10 bg-white/25"></span>
+      </div>
+      <h2 class="font-playfair text-[56px] font-bold leading-none text-white md:text-[96px]">
+        <span class="font-inter text-white">How it </span>
+        <span class="font-playfairItalic italic text-[#a0152a]">works</span>
+      </h2>
+    </div>
+    <div class="absolute left-12 top-[48vh] flex items-center gap-8" data-animate>
+      <div
+        class="flex h-[140px] w-[140px] items-center justify-center rounded-full bg-[#f4e4b1]"
+      >
+        <span class="text-[64px] font-bold text-[#c9a84c]">1</span>
+      </div>
+      <p class="text-[28px] font-semibold">Open Call</p>
+    </div>
+  </div>
+  <div
+      class="absolute text-white bottom-0 right-0 max-w-[40vw] rounded-tl-[35px] bg-[#800000] px-8 py-10 text-[18px] md:text-[20px]"
+      data-animate
+    >
+      Applications open. Submit your project idea and basic information through
+      the online form.
+    </div>
+</section>

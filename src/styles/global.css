@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+	--brand-red: #a0152a;
+	--deep-red: #800000;
+	--soft-red: #ffe6e6;
+	--off-white: #f8f6f4;
+}
+
+body {
+	margin: 0;
+	background-color: #ffffff;
+}
+
+@theme inline {
+    --font-sans: var(--font-inter);
+    --font-serif: var(--font-playfair);
+}
