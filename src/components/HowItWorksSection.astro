@@ -31,7 +31,7 @@ const steps = [
 ---
 
 <section
-  class="relative mt-24 min-h-screen scroll-mt-[120px]"
+  class="relative mt-24 scroll-mt-[120px] lg:min-h-screen"
   id="how-it-works"
   data-animate-group
   data-how-it-works
@@ -42,9 +42,9 @@ const steps = [
     style={`background-image: url(${assets.howItWorksBg});`}
   ></div>
   <div class="absolute inset-0 bg-[#a0152a]/25"></div>
-  <div class="relative mx-auto min-h-screen w-full max-w-[1440px] px-6 text-white lg:px-12">
+  <div class="relative mx-auto w-full max-w-[1440px] px-6 text-white lg:min-h-screen lg:px-12">
     <div
-      class="flex items-center justify-end gap-3 pt-24 text-right text-[18px] sm:text-[22px] md:text-[28px] lg:absolute lg:right-12 lg:top-10"
+      class="flex items-center justify-end gap-3 pt-12 text-right text-[18px] sm:pt-20 sm:text-[22px] md:text-[28px] lg:absolute lg:right-12 lg:top-10"
       data-animate
     >
       <button
@@ -86,7 +86,7 @@ const steps = [
         </svg>
       </button>
     </div>
-    <div class="mt-10 lg:absolute lg:left-12 lg:top-[20vh]" data-animate>
+    <div class="mt-6 sm:mt-8 lg:absolute lg:left-12 lg:top-[20vh]" data-animate>
       <div class="mb-8 flex flex-wrap gap-3" data-step-indicators>
         {steps.map((_, index) => (
           <span
@@ -232,6 +232,7 @@ const steps = [
     };
 
     updateStep(currentIndex);
+    gsap.set([stepContent, description], { opacity: 1, y: 0 });
 
     prevButton.addEventListener("click", () => {
       const nextIndex = (currentIndex - 1 + steps.length) % steps.length;
