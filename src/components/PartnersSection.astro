@@ -6,28 +6,53 @@ const logos = [
   assets.partners.image1,
   assets.partners.image2,
   assets.partners.image3,
+  assets.partners.ecosoc,
   assets.partners.image4,
   assets.partners.layer1,
 ];
+
+const mentors = [
+  "/mentors/image%206.png",
+  "/mentors/image%207.png",
+  "/mentors/image%208.png",
+  "/mentors/image%209.png",
+  "/mentors/image%2010.png",
+];
 ---
 
-<section class="mx-auto mt-24 max-w-[1240px] px-6 text-center" data-animate-group>
-  <h2 class="mt-8 text-[48px] text-[#212121] md:text-[64px]" data-animate>
+<section class="mx-auto mt-20 max-w-[1240px] px-6 text-center sm:mt-24" data-animate-group>
+  <h2 class="mt-6 text-[32px] text-[#212121] sm:text-[40px] md:text-[64px]" data-animate>
     <span>Supported by </span>
     <span class="font-serif font-bold italic">many</span>
     <span> partners</span>
   </h2>
   <div
-    class="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3"
+    class="mx-auto mt-8 flex max-w-[80vw] flex-wrap items-center justify-center gap-8"
     data-animate
   >
     {logos.map((logo) => (
       <div class="flex items-center justify-center">
-        <img src={logo} alt="" class="max-h-28 w-auto" loading="lazy" />
+        <img src={logo} alt="" class="max-h-20 w-auto sm:max-h-24 lg:max-h-48" loading="lazy" />
       </div>
     ))}
   </div>
-  <p class="mt-10 text-[28px] text-[#212121] md:text-[36px]" data-animate>
-    ...and backed by just as much prestige.
-  </p>
+  <div class="mt-48 grid gap-10 text-left lg:grid-cols-[1fr_1.2fr] lg:items-start" data-animate>
+    <div>
+      <h3 class="text-[#212121] font-inter text-[40px] font-bold leading-none tracking-[-1.6px] sm:text-[64px] sm:tracking-[-3.2px] lg:text-[96px] lg:tracking-[-4.8px] xl:text-[120px] xl:tracking-[-6px]">
+        ...and by
+        <br />
+        skilled mentors
+      </h3>
+      <p class="mt-4 text-[#ADADAD] font-inter text-[16px] font-normal leading-none tracking-[-0.6px] sm:text-[18px] sm:tracking-[-0.8px] lg:text-[20px] lg:tracking-[-1px] xl:text-[24px] xl:tracking-[-1.2px]">
+        who have studied, worked, and backed at great places
+      </p>
+    </div>
+    <div class="inline-grid w-full max-w-[681px] grid-cols-2 gap-x-[30px] gap-y-[30px]">
+      {mentors.map((logo) => (
+        <div class="flex items-center justify-center">
+          <img src={logo} alt="" class="max-h-20 w-auto sm:max-h-24 lg:max-h-28" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
 </section>

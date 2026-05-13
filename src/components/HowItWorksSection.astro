@@ -1,42 +1,246 @@
 ---
 import { assets } from "../data/assets";
+
+const steps = [
+  {
+    title: "Open Call",
+    description:
+      "Applications open. Submit your project idea and basic information through the online form.",
+  },
+  {
+    title: "Application Review",
+    description:
+      "HTSI and partner reviewers evaluate submissions. Shortlisted candidates may be contacted for a brief interview.",
+  },
+  {
+    title: "Cohort Selection",
+    description:
+      "Selected participants are notified and onboarded into the Kenyan Development Program.",
+  },
+  {
+    title: "Program Kick-Off",
+    description:
+      "Program begins. Weekly sessions, mentor meetings, milestone tracking, and resource deployment start.",
+  },
+  {
+    title: "Demo Day",
+    description:
+      "Cohort participants present their work. Top projects pitch at the HTSI Global Demo Day (UNGA 81 session, timing TBD).",
+  },
+];
 ---
 
-<section class="relative mt-24 min-h-screen" data-animate-group>
+<section
+  class="relative mt-24 min-h-screen scroll-mt-[120px]"
+  id="how-it-works"
+  data-animate-group
+  data-how-it-works
+  data-steps={JSON.stringify(steps)}
+>
   <div
     class="absolute inset-0 bg-cover bg-center"
     style={`background-image: url(${assets.howItWorksBg});`}
   ></div>
   <div class="absolute inset-0 bg-[#a0152a]/25"></div>
   <div class="relative mx-auto min-h-screen w-full max-w-[1440px] px-6 text-white lg:px-12">
-    <span class="absolute right-12 top-10 text-[22px] md:text-[28px]" data-animate>
-      Next
-    </span>
-    <div class="absolute left-12 top-[20vh]" data-animate>
-      <div class="mb-8 flex gap-3">
-        <span class="h-[2px] w-10 bg-white/70"></span>
-        <span class="h-[2px] w-10 bg-white/40"></span>
-        <span class="h-[2px] w-10 bg-white/25"></span>
+    <div
+      class="flex items-center justify-end gap-3 pt-24 text-right text-[18px] sm:text-[22px] md:text-[28px] lg:absolute lg:right-12 lg:top-10"
+      data-animate
+    >
+      <button
+        class="flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+        type="button"
+        aria-label="Previous step"
+        data-step-prev
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <button
+        class="flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+        type="button"
+        aria-label="Next step"
+        data-step-next
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path d="M9 6l6 6-6 6" />
+        </svg>
+      </button>
+    </div>
+    <div class="mt-10 lg:absolute lg:left-12 lg:top-[20vh]" data-animate>
+      <div class="mb-8 flex flex-wrap gap-3" data-step-indicators>
+        {steps.map((_, index) => (
+          <span
+            class="h-[2px] w-10 bg-white/25"
+            data-step-indicator
+            data-step-index={index}
+          ></span>
+        ))}
       </div>
-      <h2 class="font-playfair text-[56px] font-bold leading-none text-white md:text-[96px]">
+      <h2 class="font-playfair text-[40px] font-bold leading-none text-white sm:text-[52px] md:text-[72px] lg:text-[96px]">
         <span class="font-inter text-white">How it </span>
         <span class="font-playfairItalic italic text-[#a0152a]">works</span>
       </h2>
     </div>
-    <div class="absolute left-12 top-[48vh] flex items-center gap-8" data-animate>
+    <div
+      class="mt-12 flex items-center gap-6 lg:absolute lg:left-12 lg:top-[48vh]"
+      data-animate
+      data-step-content
+    >
       <div
-        class="flex h-[140px] w-[140px] items-center justify-center rounded-full bg-[#f4e4b1]"
+        class="flex h-[90px] w-[90px] items-center justify-center rounded-full bg-[#f4e4b1] sm:h-[110px] sm:w-[110px] lg:h-[140px] lg:w-[140px]"
       >
-        <span class="text-[64px] font-bold text-[#c9a84c]">1</span>
+        <span
+          class="text-[40px] font-bold text-[#c9a84c] sm:text-[52px] lg:text-[64px]"
+          data-step-number
+          >1</span
+        >
       </div>
-      <p class="text-[28px] font-semibold">Open Call</p>
+      <div>
+        <p class="text-[14px] uppercase tracking-[0.2em] text-white/70">
+          Step <span data-step-number>1</span>
+        </p>
+        <p class="text-[20px] font-semibold sm:text-[24px] lg:text-[28px]">
+          <span data-step-title>{steps[0].title}</span>
+        </p>
+      </div>
     </div>
   </div>
   <div
-      class="absolute text-white bottom-0 right-0 max-w-[40vw] rounded-tl-[35px] bg-[#800000] px-8 py-10 text-[18px] md:text-[20px]"
-      data-animate
-    >
-      Applications open. Submit your project idea and basic information through
-      the online form.
-    </div>
+    class="mt-8 rounded-tl-[35px] bg-[#800000] px-6 py-6 text-[16px] text-white sm:px-8 sm:py-8 sm:text-[18px] lg:absolute lg:bottom-0 lg:right-0 lg:mt-0 lg:max-w-[40vw] lg:py-10 lg:text-[20px]"
+    data-animate
+    data-step-description
+  >
+    {steps[0].description}
+  </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector(
+      "[data-how-it-works]"
+    ) as HTMLElement | null;
+    if (!section) {
+      return;
+    }
+
+    const steps = JSON.parse(section.dataset.steps || "[]") as Array<{
+      title: string;
+      date: string;
+      description: string;
+    }>;
+    if (!steps.length) {
+      return;
+    }
+
+    const prevButton = section.querySelector("[data-step-prev]");
+    const nextButton = section.querySelector("[data-step-next]");
+    const stepContent = section.querySelector("[data-step-content]");
+    const description = section.querySelector("[data-step-description]");
+    const numberEls = section.querySelectorAll("[data-step-number]");
+    const titleEl = section.querySelector("[data-step-title]");
+    const indicatorEls = section.querySelectorAll("[data-step-indicator]");
+
+    if (
+      !prevButton ||
+      !nextButton ||
+      !stepContent ||
+      !description ||
+      !titleEl
+    ) {
+      return;
+    }
+
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    const updateIndicators = (index: number) => {
+      indicatorEls.forEach((el, i) => {
+        const isActive = i <= index;
+        el.classList.toggle("bg-white/80", isActive);
+        el.classList.toggle("bg-white/25", !isActive);
+      });
+    };
+
+    const updateStep = (index: number) => {
+      const step = steps[index];
+      numberEls.forEach((el) => {
+        el.textContent = String(index + 1);
+      });
+      titleEl.textContent = step.title;
+      description.textContent = step.description;
+      updateIndicators(index);
+    };
+
+    const animateStepChange = (nextIndex: number) => {
+      if (isAnimating || nextIndex === currentIndex) {
+        return;
+      }
+
+      const shouldAnimate = !prefersReduced && steps.length > 1;
+      if (!shouldAnimate) {
+        currentIndex = nextIndex;
+        updateStep(currentIndex);
+        return;
+      }
+
+      isAnimating = true;
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        onComplete: () => {
+          isAnimating = false;
+        },
+      });
+
+      tl.to(stepContent, { opacity: 0, y: -10, duration: 0.35 }, 0)
+        .to(description, { opacity: 0, y: 10, duration: 0.35 }, 0)
+        .to(indicatorEls, { opacity: 0.6, duration: 0.25 }, 0)
+        .add(() => {
+          currentIndex = nextIndex;
+          updateStep(currentIndex);
+        })
+        .set(stepContent, { y: 12, opacity: 0 })
+        .set(description, { y: 14, opacity: 0 })
+        .to(stepContent, { opacity: 1, y: 0, duration: 0.45 })
+        .to(description, { opacity: 1, y: 0, duration: 0.5 }, "<+0.05")
+        .to(indicatorEls, { opacity: 1, duration: 0.2 }, "<");
+    };
+
+    updateStep(currentIndex);
+
+    prevButton.addEventListener("click", () => {
+      const nextIndex = (currentIndex - 1 + steps.length) % steps.length;
+      animateStepChange(nextIndex);
+    });
+
+    nextButton.addEventListener("click", () => {
+      const nextIndex = (currentIndex + 1) % steps.length;
+      animateStepChange(nextIndex);
+    });
+  });
+</script>

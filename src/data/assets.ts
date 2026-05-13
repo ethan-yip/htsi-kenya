@@ -6,9 +6,10 @@ export const assets = {
     frame: "/Vector.svg",
     image1: "/image%201.png",
     image2: "/image%202.png",
-    image3: "/image%203.png",
+    image3: "/1770439735761.jpg",
     image4: "/image%204.png",
     layer1: "/Layer_1.svg",
+    ecosoc: "/ecosoc_logo.png"
   },
   nav: {
     divider: "/Vector.svg",

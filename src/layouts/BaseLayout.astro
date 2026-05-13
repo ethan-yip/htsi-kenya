@@ -22,7 +22,7 @@ const { title = "HTSI Kenya Open Call" } = Astro.props;
     <slot />
 
     <script type="module">
-      import gsap from "gsap";
+      import { gsap } from "gsap";
 
       const prefersReduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)"

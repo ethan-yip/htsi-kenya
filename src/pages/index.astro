@@ -7,16 +7,18 @@ import BenefitsSection from "../components/BenefitsSection.astro";
 import EligibilitySection from "../components/EligibilitySection.astro";
 import HowItWorksSection from "../components/HowItWorksSection.astro";
 import PartnersSection from "../components/PartnersSection.astro";
+import FaqSection from "../components/FaqSection.astro";
 ---
 
 <BaseLayout title="HTSI Kenya Open Call">
-  <main class="pb-24">
-    <NavBar />
+  <NavBar />
+  <main class="pb-24 overflow-x-hidden">
     <Hero />
     <AboutSection />
     <BenefitsSection />
     <EligibilitySection />
     <HowItWorksSection />
     <PartnersSection />
+    <FaqSection />
   </main>
 </BaseLayout>

@@ -4,34 +4,128 @@ import { assets } from "../data/assets";
 
 <header class="sticky top-0 z-30 bg-white/95 backdrop-blur">
   <nav
-    class="mx-auto flex w-full items-center justify-between px-32 py-6"
+    class="mx-auto flex w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-12 lg:py-6"
   >
     <div class="flex items-center gap-4" data-animate-group>
       <div class="flex items-center gap-3" data-animate>
         <span
-          class="font-serif text-[40px] font-bold leading-none text-[#a0152a]"
-          >HTSI</span
-        >
-        <span class="text-[26px] leading-none text-[#353535]">
+          class="font-serif text-[28px] font-bold leading-none text-[#a0152a] sm:text-[32px] lg:text-[40px]"
+          >HTSI
+        </span>
+        <span class="bg-black/10 w-0.5 h-12 relative"></span>
+        <span class="font-serif text-[18px] leading-none text-[#353535] sm:text-[20px] lg:text-[26px]">
           Kenya Open Call
         </span>
       </div>
     </div>
     <div class="hidden items-center gap-10 text-[18px] md:flex" data-animate>
-      <div class="relative flex items-center">
-        <button class="leading-none text-[#a0152a]">About</button>
-        <span
-          class="absolute left-1/2 top-[calc(100%+10px)] h-[2px] bg-[#800000] w-16 -translate-x-1/2"
-        />
-      </div>
-      <button class="leading-none text-black">What You Get</button>
-      <button class="leading-none text-black">How to Apply</button>
-      <button class="leading-none text-black">FAQ</button>
-      <button
-        class="rounded-[10px] bg-[#800000] px-5 py-2 text-[16px] text-white"
+      <a class="nav-link is-active" href="#about" data-nav-link>
+        About
+        <span class="nav-underline" aria-hidden="true"></span>
+      </a>
+      <a class="nav-link" href="#benefits" data-nav-link>
+        What You Get
+        <span class="nav-underline" aria-hidden="true"></span>
+      </a>
+      <a class="nav-link" href="#how-it-works" data-nav-link>
+        How to Apply
+        <span class="nav-underline" aria-hidden="true"></span>
+      </a>
+      <a class="nav-link" href="#faq" data-nav-link>
+        FAQ
+        <span class="nav-underline" aria-hidden="true"></span>
+      </a>
+      <a
+        class="rounded-[10px] bg-[#800000] px-5 py-2 text-[16px] text-white transition-colors duration-200 hover:bg-[#6d0000]"
+        href="#how-it-works"
       >
         Apply Now
-      </button>
+      </a>
     </div>
   </nav>
 </header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const links = Array.from(document.querySelectorAll("[data-nav-link]"));
+    if (!links.length) {
+      return;
+    }
+
+    const sections = links
+      .map((link) => {
+        const href = link.getAttribute("href") || "";
+        if (!href.startsWith("#")) {
+          return null;
+        }
+        return document.querySelector(href);
+      })
+      .filter((section): section is Element => section !== null);
+
+    if (!sections.length) {
+      return;
+    }
+
+    const setActive = (id: string) => {
+      links.forEach((link) => {
+        const href = link.getAttribute("href") || "";
+        link.classList.toggle("is-active", href === `#${id}`);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]) {
+          setActive(visible[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-40% 0px -50% 0px",
+        threshold: [0.01, 0.1, 0.25, 0.5, 0.75],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    const firstSection = sections[0];
+    if (firstSection) {
+      setActive(firstSection.id);
+    }
+  });
+</script>
+
+<style>
+  .nav-link {
+    position: relative;
+    color: #111111;
+    transition: color 200ms ease;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    color: #a0152a;
+  }
+
+  .nav-underline {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 10px);
+    height: 2px;
+    width: 40px;
+    background: #800000;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 240ms ease;
+  }
+
+  .nav-link.is-active {
+    color: #a0152a;
+  }
+
+  .nav-link.is-active .nav-underline {
+    transform: translateX(-50%) scaleX(1);
+  }
+</style>
