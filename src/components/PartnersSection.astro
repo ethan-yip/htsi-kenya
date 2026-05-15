@@ -20,39 +20,140 @@ const mentors = [
 ];
 ---
 
-<section class="mx-auto mt-20 max-w-[1240px] px-6 text-center sm:mt-24" data-animate-group>
-  <h2 class="mt-6 text-[32px] text-[#212121] sm:text-[40px] md:text-[64px]" data-animate>
-    <span>Supported by </span>
-    <span class="font-serif font-bold italic">many</span>
-    <span> partners</span>
-  </h2>
-  <div
-    class="mx-auto mt-8 flex max-w-[80vw] flex-wrap items-center justify-center gap-8"
-    data-animate
-  >
-    {logos.map((logo) => (
-      <div class="flex items-center justify-center">
-        <img src={logo} alt="" class="max-h-20 w-auto sm:max-h-24 lg:max-h-48" loading="lazy" />
+<section class="mx-auto mt-12 max-w-[1240px] px-6 sm:mt-16" data-animate-group>
+  <div class="rounded-[36px] bg-[#fff7f4] px-6 py-14 text-center sm:px-10 lg:px-16">
+    <h2 class="mt-2 text-[48px] text-[#212121] sm:text-[40px] md:text-[96px] leading-none font-semibold tracking-[-1.6px] sm:tracking-[-3.2px] lg:tracking-[-4.8px] xl:tracking-[-6px]" data-animate>
+      <span>Supported by </span>
+      <span class="font-serif font-normal italic">many</span>
+      <span> partners</span>
+    </h2>
+    <div class="partners-marquee mx-auto mt-16" data-animate>
+      <div class="partners-marquee__track">
+        {logos.map((logo) => (
+          <div class="partners-marquee__item">
+            <img
+              src={logo}
+              alt=""
+              class="partners-marquee__logo max-h-20 w-auto sm:max-h-24 lg:max-h-32"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-  <div class="mt-48 grid gap-10 text-left lg:grid-cols-[1fr_1.2fr] lg:items-start" data-animate>
-    <div>
-      <h3 class="text-[#212121] font-inter text-[40px] font-bold leading-none tracking-[-1.6px] sm:text-[64px] sm:tracking-[-3.2px] lg:text-[96px] lg:tracking-[-4.8px] xl:text-[120px] xl:tracking-[-6px]">
-        ...and by
-        <br />
-        skilled mentors
-      </h3>
-      <p class="mt-4 text-[#ADADAD] font-inter text-[16px] font-normal leading-none tracking-[-0.6px] sm:text-[18px] sm:tracking-[-0.8px] lg:text-[20px] lg:tracking-[-1px] xl:text-[24px] xl:tracking-[-1.2px]">
-        who have studied, worked, and backed at great places
-      </p>
+      <div class="partners-marquee__track" aria-hidden="true">
+        {logos.map((logo) => (
+          <div class="partners-marquee__item">
+            <img
+              src={logo}
+              alt=""
+              class="partners-marquee__logo max-h-20 w-auto sm:max-h-24 lg:max-h-32"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
     </div>
-    <div class="inline-grid w-full max-w-[681px] grid-cols-2 gap-x-[30px] gap-y-[30px]">
-      {mentors.map((logo) => (
-        <div class="flex items-center justify-center">
-          <img src={logo} alt="" class="max-h-20 w-auto sm:max-h-24 lg:max-h-28" loading="lazy" />
-        </div>
-      ))}
+    <div
+      class="mt-24 grid gap-10 text-left lg:grid-cols-[1fr_1.2fr] lg:items-start lg:text-left"
+      data-animate
+    >
+      <div>
+        <h3 class="text-[#212121] font-inter text-[40px] font-semibold leading-none tracking-[-1.6px] sm:text-[64px] sm:tracking-[-3.2px] lg:text-[96px] lg:tracking-[-4.8px] xl:text-[120px] xl:tracking-[-6px]">
+          ...and by
+          <br />
+          skilled mentors
+        </h3>
+        <p class="mt-4 text-[#ADADAD] font-inter text-[16px] font-normal leading-none tracking-[-0.6px] sm:text-[18px] sm:tracking-[-0.8px] lg:text-[20px] lg:tracking-[-1px] xl:text-[24px] xl:tracking-[-1.2px]">
+          who have studied, worked, and backed at great places
+        </p>
+      </div>
+      <div class="inline-grid w-full max-w-[681px] grid-cols-2 gap-x-[30px] gap-y-[30px]">
+        {mentors.map((logo) => (
+          <div class="flex items-center justify-center">
+            <img src={logo} alt="" class="max-h-20 w-auto sm:max-h-24 lg:max-h-28" loading="lazy" />
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .partners-marquee {
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    overflow: hidden;
+    padding: 0.5rem 0;
+  }
+
+  .partners-marquee::before,
+  .partners-marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(40px, 12vw, 140px);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .partners-marquee::before {
+    left: 0;
+    background: linear-gradient(90deg, #fff7f4 0%, rgba(255, 247, 244, 0) 100%);
+  }
+
+  .partners-marquee::after {
+    right: 0;
+    background: linear-gradient(270deg, #fff7f4 0%, rgba(255, 247, 244, 0) 100%);
+  }
+
+  .partners-marquee__track {
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    animation: partners-marquee-scroll 42s linear infinite;
+    will-change: transform;
+  }
+
+  .partners-marquee__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: clamp(140px, 18vw, 180px);
+  }
+
+  @media (max-width: 640px) {
+    .partners-marquee__track {
+      gap: 0.75rem;
+    }
+
+    .partners-marquee {
+      gap: 0.75rem;
+    }
+
+    .partners-marquee__item {
+      width: clamp(180px, 70vw, 220px);
+    }
+
+    .partners-marquee__logo {
+      max-height: 100px;
+    }
+  }
+
+  @keyframes partners-marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .partners-marquee__track {
+      animation: none;
+    }
+  }
+</style>

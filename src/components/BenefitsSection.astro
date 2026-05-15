@@ -39,7 +39,12 @@ const benefits = [
       <h2 class="text-[28px] font-semibold text-[#a0152a] sm:text-[32px] md:text-[40px]">
         See what you get
       </h2>
-      <p class="mt-2 text-[14px] text-[#a9a9a9] sm:text-[16px]">Hover to see more</p>
+      <p
+        class="mt-2 text-[14px] text-[#a9a9a9] sm:text-[16px]"
+        data-benefit-helper
+      >
+        Hover to see more
+      </p>
     </div>
   </div>
   <div class="mt-6 grid gap-6 md:grid-cols-2" data-animate-group data-animate>
@@ -58,7 +63,7 @@ const benefits = [
           </p>
         </div>
         <p
-          class="benefit-detail pointer-events-none absolute inset-0 flex items-center px-8 text-[18px] leading-[1.6]"
+          class="benefit-detail pointer-events-none absolute inset-0 flex items-center px-8 text-[14px] sm:text-[18px] leading-[1.6]"
           data-benefit-detail
         >
           {benefit.detail}
@@ -75,6 +80,18 @@ const benefits = [
     const cards = Array.from(
       document.querySelectorAll("[data-benefit-card]")
     ) as HTMLElement[];
+    const helper = document.querySelector("[data-benefit-helper]");
+
+    if (helper) {
+      const updateHelper = () => {
+        helper.textContent = window.matchMedia("(max-width: 640px)").matches
+          ? "Click to see more"
+          : "Hover to see more";
+      };
+
+      updateHelper();
+      window.addEventListener("resize", updateHelper);
+    }
 
     cards.forEach((card) => {
       const front = card.querySelector("[data-benefit-front]");
@@ -89,6 +106,7 @@ const benefits = [
       gsap.set(icon, { y: 0 });
 
       const hoverIn = () => {
+        card.classList.add("is-active");
         gsap.killTweensOf([front, detail, icon, card]);
         gsap.to(card, {
           backgroundColor: "#800000",
@@ -116,6 +134,7 @@ const benefits = [
       };
 
       const hoverOut = () => {
+        card.classList.remove("is-active");
         gsap.killTweensOf([front, detail, icon, card]);
         gsap.to(card, {
           backgroundColor: "#ffe6e6",
@@ -142,8 +161,25 @@ const benefits = [
         });
       };
 
+      const toggleActive = () => {
+        const isActive = card.classList.contains("is-active");
+
+        cards.forEach((other) => {
+          if (other !== card) {
+            other.classList.remove("is-active");
+          }
+        });
+
+        if (isActive) {
+          hoverOut();
+        } else {
+          hoverIn();
+        }
+      };
+
       card.addEventListener("mouseenter", hoverIn);
       card.addEventListener("mouseleave", hoverOut);
+      card.addEventListener("click", toggleActive);
     });
   });
 </script>
@@ -155,5 +191,15 @@ const benefits = [
 
   .benefit-detail {
     color: #ffffff;
+  }
+
+  .benefit-card.is-active .benefit-detail {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .benefit-card.is-active [data-benefit-front] {
+    opacity: 0;
+    transform: translateY(-12px);
   }
 </style>

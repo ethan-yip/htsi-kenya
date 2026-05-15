@@ -18,7 +18,40 @@ const { title = "HTSI Kenya Open Call" } = Astro.props;
     <Font cssVariable="--font-playfair" preload/>
     <Font cssVariable="--font-inter" preload/>
   </head>
-  <body class="bg-white font-sans text-[#212121]">
+  <body class="w-screen overflow-x-hidden bg-white font-sans text-[#212121]">
     <slot />
+    <script>
+      import { gsap } from "gsap";
+      import ScrollTrigger from "gsap/ScrollTrigger";
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (!prefersReducedMotion.matches) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const groups = document.querySelectorAll("[data-animate-group]");
+
+        groups.forEach((group) => {
+          const items = group.querySelectorAll("[data-animate]");
+
+          if (!items.length) return;
+
+          gsap.set(items, { autoAlpha: 0, y: 28 });
+
+          gsap.to(items, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: group,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+      }
+    </script>
   </body>
 </html>
